@@ -1,14 +1,22 @@
+import "./index.css";
+
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 
-import state from "./Redux/state";
+import customStore, { StateType } from "./redux/customStore";
+import { RootReducerType, store } from "./redux/redux-store";
 
-ReactDOM.render(
-  <BrowserRouter>
-    <App state={state} />
-  </BrowserRouter>,
-  document.getElementById("root")
-);
+export const render = (state: RootReducerType) => {
+  ReactDOM.render(
+    <BrowserRouter>
+      <App state={state} dispatch={customStore.dispatch.bind(customStore)} />
+    </BrowserRouter>,
+    document.getElementById("rooше")
+  );
+};
+
+render(customStore.getState());
+
+customStore.subscribe(render);

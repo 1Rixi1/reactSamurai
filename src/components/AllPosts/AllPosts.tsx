@@ -1,28 +1,36 @@
 import Post from "../Post/Post";
-import React from "react";
-
-export type PostDataType = {
-  id: number;
-  likeCount: number;
-};
+import React, { ChangeEvent } from "react";
+import { ActionsType, ProfilePageType } from "../../redux/customStore";
+import { addNewPostAC, addPostAC } from "../../redux/reducers/profile-reducer";
 
 type AllPostsPropsType = {
-  postData: PostDataType[];
+  profilePage: ProfilePageType;
+  dispatch: (action: ActionsType) => void;
 };
 
 const AllPosts: React.FC<AllPostsPropsType> = (props) => {
-  const { postData } = props;
+  const { profilePage, dispatch } = props;
 
-  const mappedPosts = postData.map((post) => (
-    <Post key={post.id} like={post.likeCount} />
-  ));
+  const mappedPosts = profilePage.postData.map((post) => {
+    return <Post key={post.id} like={post.likeCount} message={post.message} />;
+  });
+
+  const onClickAddPostHandler = () => {
+    dispatch(addPostAC(profilePage.postText));
+  };
+  const onChangeTextAreaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    dispatch(addNewPostAC(e.currentTarget.value));
+  };
 
   return (
     <div>
       <div>
-        <textarea></textarea>
+        <textarea
+          value={profilePage.postText}
+          onChange={onChangeTextAreaHandler}
+        />
         <div>
-          <button>Add Post</button>
+          <button onClick={onClickAddPostHandler}>Add Post</button>
         </div>
       </div>
 

@@ -6,14 +6,17 @@ import NavBar from "./components/NavBar/NavBar";
 import { Dialogs } from "./components/Dialogs/Dialogs";
 import { Route } from "react-router-dom";
 import { News } from "./components/News/News";
-import { StateType } from "./Redux/state";
+import { ActionsType, StateType } from "./redux/customStore";
+import { RootReducerType } from "./redux/redux-store";
+import { Store } from "redux";
 
 type AppPropsType = {
   state: StateType;
+  dispatch: (action: ActionsType) => void;
 };
 
 const App: React.FC<AppPropsType> = (props) => {
-  const { state } = props;
+  const { state, dispatch } = props;
 
   return (
     <div className="content">
@@ -23,11 +26,15 @@ const App: React.FC<AppPropsType> = (props) => {
       <div className={"content__main"}>
         <Route
           path="/profile"
-          render={() => <Main postData={state.profilePage.postData} />}
+          render={() => (
+            <Main profilePage={state.profilePage} dispatch={dispatch} />
+          )}
         />
         <Route
           path="/dialogs"
-          render={() => <Dialogs dataItemsMessage={state.dialogsPage} />}
+          render={() => (
+            <Dialogs dialogsPage={state.dialogsPage} dispatch={dispatch} />
+          )}
         />
         <Route path="/news" render={() => <News />} />
       </div>
