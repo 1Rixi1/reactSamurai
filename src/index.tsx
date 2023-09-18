@@ -7,16 +7,16 @@ import { BrowserRouter } from "react-router-dom";
 
 import customStore from "./redux/customStore";
 import { RootReducerType } from "./redux/redux-store";
+import { StoreContext } from "./Context/StoreContext";
 
 export const render = (state: RootReducerType) => {
   ReactDOM.render(
     <BrowserRouter>
-      <App
-        customStore={customStore}
-        state={state}
-        dispatch={customStore.dispatch.bind(customStore)}
-      />
+      <StoreContext.Provider value={customStore}>
+        <App />
+      </StoreContext.Provider>
     </BrowserRouter>,
+
     document.getElementById("root")
   );
 };

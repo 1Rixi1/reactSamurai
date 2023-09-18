@@ -2,11 +2,7 @@ import style from "./Dialogs.module.css";
 import { DialogItem } from "./DialogItem/DialogItem";
 import { Message } from "./Message/Message";
 import React, { ChangeEvent } from "react";
-import { CustomStoreType, DialogsPageType } from "../../redux/customStore";
-import {
-  addMessageAC,
-  addNewDialogAC,
-} from "../../redux/reducers/dialogs-reducer";
+import { DialogsPageType } from "../../redux/customStore";
 
 export type DialogItemDataType = {
   id: number;

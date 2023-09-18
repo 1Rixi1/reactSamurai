@@ -95,7 +95,6 @@ const customStore: CustomStoreType = {
   },
 
   dispatch(action: ActionsType) {
-    debugger;
     this._state.profilePage = profileReducer(this._state.profilePage, action);
 
     this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
