@@ -19,12 +19,6 @@ export type DialogsMessagesType = {
   message: string;
 };
 
-export type DialogsPageType = {
-  dialogsUsers: DialogsUserType[];
-  dialogsMessages: DialogsMessagesType[];
-  dialogsText: string;
-};
-
 export type PostType = {
   id: number;
   message: string;
@@ -34,6 +28,12 @@ export type PostType = {
 export type ProfilePageType = {
   postData: PostType[];
   postText: string;
+};
+
+export type DialogsPageType = {
+  dialogsUsers: DialogsUserType[];
+  dialogsMessages: DialogsMessagesType[];
+  dialogsText: string;
 };
 
 export type StateType = {
@@ -49,7 +49,7 @@ export type ActionsType =
   | AddNewDialogACType
   | AddMessageType;
 
-type StoreType = {
+export type CustomStoreType = {
   _state: StateType;
   getState: () => StateType;
   _callSubscriber: (state: StateType) => void;
@@ -57,7 +57,7 @@ type StoreType = {
   dispatch: (action: ActionsType) => void;
 };
 
-const customStore: StoreType = {
+const customStore: CustomStoreType = {
   _state: {
     profilePage: {
       postData: [
@@ -81,6 +81,7 @@ const customStore: StoreType = {
       dialogsText: "",
     },
   },
+
   _callSubscriber() {
     console.log("state change");
   },
@@ -94,6 +95,7 @@ const customStore: StoreType = {
   },
 
   dispatch(action: ActionsType) {
+    debugger;
     this._state.profilePage = profileReducer(this._state.profilePage, action);
 
     this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);

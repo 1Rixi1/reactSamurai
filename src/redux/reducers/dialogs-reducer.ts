@@ -35,7 +35,7 @@ export const dialogsReducer = (state = initialState, action: ActionsType) => {
 
 export type AddNewDialogACType = ReturnType<typeof addNewDialogAC>;
 
-export type AddMessageType = ReturnType<typeof addMessage>;
+export type AddMessageType = ReturnType<typeof addMessageAC>;
 
 export const addNewDialogAC = (newDialog: string) => {
   return {
@@ -46,7 +46,7 @@ export const addNewDialogAC = (newDialog: string) => {
   } as const;
 };
 
-export const addMessage = (newMessage: string) => {
+export const addMessageAC = (newMessage: string) => {
   return {
     type: "ADD-MESSAGE",
     payload: {

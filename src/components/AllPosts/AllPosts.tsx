@@ -1,25 +1,26 @@
 import Post from "../Post/Post";
 import React, { ChangeEvent } from "react";
-import { ActionsType, ProfilePageType } from "../../redux/customStore";
-import { addNewPostAC, addPostAC } from "../../redux/reducers/profile-reducer";
+import { ProfilePageType } from "../../redux/customStore";
 
 type AllPostsPropsType = {
   profilePage: ProfilePageType;
-  dispatch: (action: ActionsType) => void;
+  onClickAddPost: () => void;
+  onChangeTextArea: (text: string) => void;
 };
 
 const AllPosts: React.FC<AllPostsPropsType> = (props) => {
-  const { profilePage, dispatch } = props;
+  const { profilePage, onClickAddPost, onChangeTextArea } = props;
 
   const mappedPosts = profilePage.postData.map((post) => {
     return <Post key={post.id} like={post.likeCount} message={post.message} />;
   });
 
-  const onClickAddPostHandler = () => {
-    dispatch(addPostAC(profilePage.postText));
-  };
   const onChangeTextAreaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch(addNewPostAC(e.currentTarget.value));
+    onChangeTextArea(e.currentTarget.value);
+  };
+
+  const onClickAddPostHandler = () => {
+    onClickAddPost();
   };
 
   return (

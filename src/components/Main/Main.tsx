@@ -1,22 +1,21 @@
 import React from "react";
 
 import style from "./Main.module.css";
-import AllPosts from "../AllPosts/AllPosts";
 import { MainInfo } from "./MainInfo/MainInfo";
-import { ActionsType, ProfilePageType } from "../../redux/customStore";
+import { CustomStoreType } from "../../redux/customStore";
+import AllPostsContainer from "../AllPosts/AllPostsContainer";
 
 type MainPropsType = {
-  profilePage: ProfilePageType;
-  dispatch: (action: ActionsType) => void;
+  customStore: CustomStoreType;
 };
 
 const Main: React.FC<MainPropsType> = (props) => {
-  const { profilePage, dispatch } = props;
+  const { customStore } = props;
 
   return (
     <div className={style.mainContent}>
       <MainInfo />
-      <AllPosts profilePage={profilePage} dispatch={dispatch} />
+      <AllPostsContainer customStore={customStore} />
     </div>
   );
 };
