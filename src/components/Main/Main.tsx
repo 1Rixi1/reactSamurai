@@ -2,7 +2,7 @@ import React from "react";
 
 import style from "./Main.module.css";
 import { MainInfo } from "./MainInfo/MainInfo";
-import AllPostsContainer from "../AllPosts/AllPostsContainer";
+import { AllPostsContainer } from "../AllPosts/AllPostsContainer";
 
 type MainPropsType = {};
 

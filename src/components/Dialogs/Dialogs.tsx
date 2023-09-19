@@ -16,7 +16,7 @@ export type DialogMessageType = {
 
 type DialogsPropsType = {
   dialogsPage: DialogsPageType;
-  onClickAddMessage: () => void;
+  onClickAddMessage: (dialogsText: string) => void;
   onChangeTextArea: (text: string) => void;
 };
 
@@ -36,7 +36,7 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
   };
 
   const onClickAddMessageHandler = () => {
-    onClickAddMessage();
+    onClickAddMessage(dialogsPage.dialogsText);
   };
 
   return (

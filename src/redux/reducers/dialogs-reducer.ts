@@ -15,7 +15,7 @@ export const dialogsReducer = (state = initialState, action: ActionsType) => {
     case "ADD-NEW-DIALOG": {
       state.dialogsText = action.payload.newDialog;
 
-      return state;
+      return { ...state };
     }
 
     case "ADD-MESSAGE": {
@@ -25,7 +25,7 @@ export const dialogsReducer = (state = initialState, action: ActionsType) => {
       };
 
       state.dialogsMessages.push(newMessage);
-      return state;
+      return { ...state };
     }
 
     default:

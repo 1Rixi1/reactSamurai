@@ -6,15 +6,15 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 
 import customStore from "./redux/customStore";
-import { RootReducerType } from "./redux/redux-store";
-import { StoreContext } from "./Context/StoreContext";
+import { RootReducerType, store } from "./redux/redux-store";
+import { Provider } from "react-redux";
 
 export const render = (state: RootReducerType) => {
   ReactDOM.render(
     <BrowserRouter>
-      <StoreContext.Provider value={customStore}>
+      <Provider store={store}>
         <App />
-      </StoreContext.Provider>
+      </Provider>
     </BrowserRouter>,
 
     document.getElementById("root")

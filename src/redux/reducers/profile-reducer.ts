@@ -19,13 +19,13 @@ export const profileReducer = (state = initialState, action: ActionsType) => {
       state.postData.push(newPost);
       state.postText = "";
 
-      return state;
+      return { ...state };
     }
 
     case "ADD-NEW-POST": {
       state.postText = action.payload.newPost;
 
-      return state;
+      return { ...state };
     }
 
     default:
